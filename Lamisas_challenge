@@ -1,9 +1,8 @@
 
 /*
-- compare whether there is a correlation between 2 sets of data
-- read in txt file with 2 columns of info
-- analyze/calculate r^2 from all data given
-- if r^2 is close to 1, then there is a correlation
+Basically the point of this code is to compare info for any 2 columns out of the given data on stars and then 
+calculate r^2 to see whether or not there is a correlation between the two categories and how strong of a correlation 
+it is. Right now, my code isn't working for some reason, though and I didn't have enough time to fix it so sorry about that.
 */
 
 #include <iostream>
