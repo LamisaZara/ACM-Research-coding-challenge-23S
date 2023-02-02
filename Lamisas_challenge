@@ -1,0 +1,58 @@
+
+/*
+- compare whether there is a correlation between 2 sets of data
+- read in txt file with 2 columns of info
+- analyze/calculate r^2 from all data given
+- if r^2 is close to 1, then there is a correlation
+*/
+
+#include <iostream>
+#include <fstream>
+#include <istream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+int main(){
+    ifstream inFile;
+    inFile.open("star_info.txt");
+
+    const int NUM_STARS = 5;
+    const double CALC_STARS = 5.0;
+
+    int i = 0;
+    double dataSetOne[NUM_STARS] = {0};
+    double dataSetTwo[NUM_STARS] = {0};
+    double slope = 0;
+    double yInt = 0;
+
+    double sumOne = 0, sumTwo = 0;
+
+    while (inFile >> dataSetOne[i] >> dataSetTwo[i]){
+        slope += dataSetTwo[i]/dataSetOne[i];
+
+        sumOne += dataSetOne[i];
+        sumTwo += dataSetTwo[i];
+        i++;
+    }
+
+    double avgOne = sumOne/CALC_STARS;
+    double avgTwo = sumTwo/CALC_STARS;
+
+    slope /= NUM_STARS; // find avg slope
+    yInt = avgTwo - slope*avgOne; // find y int
+
+    double SStot = 0; // sum of squares
+    double SSres = 0; // residual sum of squares
+
+    double tempVar = 0;
+
+    for (int j = 0; j < NUM_STARS; j++){
+        SStot += pow(avgTwo - dataSetTwo[j],2);
+        SSres += pow(dataSetTwo[j] - slope*dataSetOne[j] - yInt,2);
+    }
+
+    double rSquared = 1-(SSres/SStot);
+    cout << dataSetOne[0];
+
+}
